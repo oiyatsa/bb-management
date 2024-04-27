@@ -20,10 +20,12 @@ class FoodSeeder extends Seeder
                 'food_name' => '食品',
                 'expiration_date' => '2000-01-01',
                 'remaining_amount'=> '〇個',
+                'category_id' => 1,
                 'note'=>'メモ書き',
                 'search_recipie_name'=>'レシピ検索用',
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(),
+                
         ]);        
     }
 }
