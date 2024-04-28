@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Food;
+use App\Http\Requests\FoodRequest;
 
 class FoodController extends Controller
 {
@@ -14,7 +15,12 @@ class FoodController extends Controller
         //Foodsファイルのindex（blade.php）を参照、かえす
     }
     
-    public function store(Request $request, Food $food)
+    public function add(Category $category)
+    {
+        return view('Foods.add')->with(['categories' => $category->get()]);
+    }
+    
+    public function store(FoodRequest $request, Food $food)
     {
         $input = $request['food'];
         $food->fill($input)->save();
@@ -24,10 +30,6 @@ class FoodController extends Controller
     //function edit追加
     
     
-    public function add(Category $category)
-    {
-        return view('Foods.add')->with(['categories' => $category->get()]);
-    }
     
     
 }
