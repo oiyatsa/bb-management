@@ -19,7 +19,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/foods', [FoodController::class, 'index']);
+Route::get('/foods', [FoodController::class, 'index'])->name('index');
+Route::get('/foods/add', [FoodController::class, 'add'])->name('add');
+Route::post('/foods', [FoodController::class, 'store']);
+//Route::get('/foods/{food}', [FoodController::class ,'edit'])->name('edit');
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
