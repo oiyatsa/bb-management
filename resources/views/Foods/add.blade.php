@@ -54,7 +54,7 @@
         <button type="submit">登録</button>
      </form>
      <div class='footer'>
-         <a href="/foods">戻る</a>
+         <a href="/foods">一覧へ戻る</a>
     </body>
     </x-app-layout>
 </html>
