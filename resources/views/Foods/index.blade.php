@@ -16,7 +16,7 @@
                
                     <div class='image'></div>
                     <h2 class='food_name'>
-                        <a href="/foods/{{ $food->id }}">{{ $food->food_name }}</a>
+                        <a href="/foods/{{ $food->id }}/edit">{{ $food->food_name }}</a>
                     </h2>
                     <h3 class='remaining_period'></h3><!--賞味期限と今日の日にちから期限切れまで残り何日か表示 -->
                     <h4 class=expiration_date>{{$food->expiration_date}}</h4>

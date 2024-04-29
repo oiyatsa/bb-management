@@ -22,7 +22,9 @@ Route::get('/', function () {
 Route::get('/foods', [FoodController::class, 'index'])->name('index');
 Route::get('/foods/add', [FoodController::class, 'add'])->name('add');
 Route::post('/foods', [FoodController::class, 'store']);
-//Route::get('/foods/{food}', [FoodController::class ,'edit'])->name('edit');
+Route::get('/foods/{food}/edit', [FoodController::class, 'edit'])->name('edit');
+Route::put('/foods/{food}', [FoodController::class, 'update']);
+
 
 
 Route::get('/dashboard', function () {
