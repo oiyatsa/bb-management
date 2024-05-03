@@ -20,8 +20,6 @@ class FoodController extends Controller
         return view('Foods.add')->with(['categories' => $category->get()]);
     }
     
-    
-    
     public function store(FoodRequest $request, Food $food)
     {
         $input = $request['food'];
@@ -40,6 +38,12 @@ class FoodController extends Controller
         $input_food = $request['food'];
         $food->fill($input_food)->save();
         return redirect('/foods/');
+    }
+    
+    public function delete(Food $food)
+    {
+        $food->delete();
+        return redirect('/foods');
     }
     
     
