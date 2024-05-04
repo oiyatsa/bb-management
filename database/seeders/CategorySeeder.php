@@ -35,6 +35,12 @@ class CategorySeeder extends Seeder
         ]);
         
         DB::table('categories')->insert([
+            'category_name' => 'シンク下',
+            'created_at' => new DateTime(),
+            'updated_at' => new DateTime(),
+        ]);
+        
+        DB::table('categories')->insert([
             'category_name' => 'その他',
             'created_at' => new DateTime(),
             'updated_at' => new DateTime(),

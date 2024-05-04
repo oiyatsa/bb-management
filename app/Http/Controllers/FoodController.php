@@ -9,7 +9,7 @@ use App\Http\Requests\FoodRequest;
 
 class FoodController extends Controller
 {
-    public function index(Food $food)
+    public function index(Food $food, Category $category)
     {
         return view('Foods.index')->with(['foods' => $food->get()]);
         //Foodsファイルのindex（blade.php）を参照、かえす
