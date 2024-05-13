@@ -9,12 +9,13 @@
     <x-app-layout>
     <body>
         <h1>食品登録</h1>
-     <form action="/foods" method="POST">
+     <form action="/foods" method="POST" enctype="multipart/form-data">
          @csrf
-         <div class='image'>
+         <div class="image">
              <h2>画像</h2>
+             <input type="file" name="image">
+         </div>
            <!-- <input type='image'>-->
-        </div>
         <div class='food_name'>
             <h3>食品名（商品名）</h3>
             <input type='text' name='food[food_name]' placeholder="食品名や商品名" value={{old('food.food_name')}}>
