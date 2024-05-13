@@ -6,13 +6,34 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Food;
 use App\Http\Requests\FoodRequest;
+use Cloudinary;
 
 class FoodController extends Controller
 {
-    public function index(Food $food, Category $category)
+    public function index(Category $category, Food $food, Request $request)
     {
-        return view('Foods.index')->with(['foods' => $food->get()]);
-        //Foodsファイルのindex（blade.php）を参照、かえす
+       
+        $category1 = $food->where('category_id', 3)->get();
+       
+       
+       
+       if(is_array($request->input('categories'))){
+
+    $query->where(function($q) use($request){
+        foreach($request->input('categories') as $category){
+            $q->orWhere('category',$category);
+           }
+        });
+    }
+        
+        return view('Foods.index')->with([
+            'categories' => $category,
+            'foods' => $food->orderBy('expiration_date', 'asc')->get(),
+            'categories1' => $category1
+            ]);
+        
+        
+        
     }
     
     public function add(Category $category)
@@ -22,7 +43,12 @@ class FoodController extends Controller
     
     public function store(FoodRequest $request, Food $food)
     {
+        $image = Cloudinary::upload($request->file('image')->getRealPath())->getSecurePath();
+        //dd($image_url);
+        
         $input = $request['food'];
+        //$input = $request->all();
+        $input += ['image' => $image];
         $food->fill($input)->save();
         return redirect('/foods');
     }
@@ -30,7 +56,10 @@ class FoodController extends Controller
     //function edit追加
     public function edit(Food $food, Category $category)
     {
-        return view('Foods.edit')->with(['food' => $food])->with(['categories' => $category->get()]);
+        return view('Foods.edit')->with([
+            'food' => $food,
+            'categories' => $category->get()
+            ]);
     }
     
     public function update(FoodRequest $request, Food $food)
@@ -45,6 +74,7 @@ class FoodController extends Controller
         $food->delete();
         return redirect('/foods');
     }
+    
     
     
     
