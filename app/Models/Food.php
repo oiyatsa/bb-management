@@ -20,6 +20,7 @@ class Food extends Model
     'expiration_date',
     'search_recipie_name',
     'category_id',
+    'note',
     'image',
     ];
     

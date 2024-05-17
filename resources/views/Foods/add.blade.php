@@ -8,7 +8,7 @@
     </head>
     <x-app-layout>
     <body>
-        <h1>食品登録</h1>
+        <h1 class="text-2xl mx-10 my-5">食品登録</h1>
      <form action="/foods" method="POST" enctype="multipart/form-data">
          @csrf
          <div class="image">
