@@ -92,9 +92,12 @@ class FoodController extends Controller
     {
         //$image = Cloudinary::upload($request->file('image')->getRealPath())->getSecurePath();
         //dd($image_url);
-        
-        $input_food = $request['food'];
-        $food->fill($input_food)->save();
+        $image = Cloudinary::upload($request->file('image')->getRealPath())->getSecurePath();
+         //dd($request->file('image'));
+         
+        $input = $request['food'];
+        $input += ['image' => $image];
+        $food->fill($input)->save();
         return redirect('/foods/');
     }
     
