@@ -20,6 +20,7 @@
             <option value="その他">その他</option>
    　　 </select>
    　　 </form>
+   　　 <input type ="radio">
         <a href="/foods/add" class="mb-5">食品登録</a>
         <div class="mb-5">
         <!--<div class="select_category">
