@@ -16,7 +16,7 @@ class FoodController extends Controller
         $category1 = $food->where('category_id', 3)->get();
        
        
-       
+       //カテゴリ（保管場所べつ）
        if(is_array($request->input('categories'))){
 
     $query->where(function($q) use($request){
@@ -25,6 +25,30 @@ class FoodController extends Controller
            }
         });
     }
+    
+    //残り日数カウント
+   // $today = date("Y-m-d");
+    //$target_day = 'foods' -> $expiration_date;
+    
+    //$remaining_period = $today->diff($target_day);
+    
+    //if(strtotime($today) === strtotime($target_day)){
+        
+      //  echo "本日賞味期限です";
+        
+    //}else if(strtotime($today) > strtotime($target_day)){
+        
+      //  echo "期限切れ　日経過";
+        
+    //}else{
+      //  echo "あと.$remaining_period.日";
+        
+    //}
+    
+    
+ 
+   
+    
         
         return view('Foods.index')->with([
             'categories' => $category,
@@ -56,6 +80,8 @@ class FoodController extends Controller
     //function edit追加
     public function edit(Food $food, Category $category)
     {
+       
+        
         return view('Foods.edit')->with([
             'food' => $food,
             'categories' => $category->get()
@@ -64,6 +90,9 @@ class FoodController extends Controller
     
     public function update(FoodRequest $request, Food $food)
     {
+        //$image = Cloudinary::upload($request->file('image')->getRealPath())->getSecurePath();
+        //dd($image_url);
+        
         $input_food = $request['food'];
         $food->fill($input_food)->save();
         return redirect('/foods/');
