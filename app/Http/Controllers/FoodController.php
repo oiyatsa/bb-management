@@ -12,19 +12,36 @@ class FoodController extends Controller
 {
     public function index(Category $category, Food $food, Request $request)
     {
+       $sort = $request->sort;
+       if($sort==='asc'){
+           return view('Foods.index')->with([
+               'categories' => $category,
+               'foods' => $food->orderBy('expiration_date' , 'asc')->get(),
+               ]);
+       }elseif($sort==='desc'){
+           return view('Foods.index')->with([
+               'categories' => $category,
+               'foods' => $food->orderBy('expiration_date' , 'desc')->get(),
+               ]);
+       }else{
+           return view('Foods.index')->with([
+               'categories' => $category,
+               'foods' => $food->get(),
+               ]);
+       }
        
         $category1 = $food->where('category_id', 3)->get();
        
        
        //カテゴリ（保管場所べつ）
-       if(is_array($request->input('categories'))){
+      //if(is_array($request->input('categories'))){
 
-    $query->where(function($q) use($request){
-        foreach($request->input('categories') as $category){
-            $q->orWhere('category',$category);
-           }
-        });
-    }
+   // $query->where(function($q) use($request){
+      //  foreach($request->input('categories') as $category){
+         //   $q->orWhere('category',$category);
+       //    }
+      //  });
+   // }
     
     //残り日数カウント
    // $today = date("Y-m-d");
@@ -44,17 +61,14 @@ class FoodController extends Controller
       //  echo "あと.$remaining_period.日";
         
     //}
-    
-    
- 
    
     
-        
-        return view('Foods.index')->with([
-            'categories' => $category,
-            'foods' => $food->orderBy('expiration_date', 'asc')->get(),
-            'categories1' => $category1
-            ]);
+        //一覧表示
+        //return view('Foods.index')->with([
+            //'categories' => $category,
+            //'foods' => $food->orderBy('expiration_date', 'asc')->get(),
+            //'categories1' => $category1
+            //]);
         
         
         
