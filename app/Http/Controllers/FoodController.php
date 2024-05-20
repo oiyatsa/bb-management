@@ -81,12 +81,17 @@ class FoodController extends Controller
     
     public function store(FoodRequest $request, Food $food)
     {
-        $image = Cloudinary::upload($request->file('image')->getRealPath())->getSecurePath();
+        //$image = Cloudinary::upload($request->file('image')->getRealPath())->getSecurePath();
         //dd($image_url);
         
         $input = $request['food'];
+        if($request->file('image')){
+            $image = Cloudinary::upload($request->file('image')->getRealPath())->getSecurePath();
+            $input += ['image' => $image];
+        }
         //$input = $request->all();
-        $input += ['image' => $image];
+        
+       // $input += ['image' => $image];
         $food->fill($input)->save();
         return redirect('/foods');
     }
