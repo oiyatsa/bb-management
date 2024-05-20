@@ -91,7 +91,10 @@
               <tr>
                <div class='food'>
                 <div class="">
-                    <td class="border-b border-slate-300"><img class="h-auto size-28 " src="{{ $food->image }}" alt="画像が読み込めません。"/></td>
+                    
+                    
+                        <td class="border-b border-slate-300"><img class="h-auto size-28 " src="{{ $food->image }}" alt="画像が読み込めません。"/></td>
+                    
                     <td class="border-b border-slate-300">
                         <h2 class='food_name text-lg hover:text-neutral-500'>
                         <a href="/foods/{{ $food->id }}/edit">{{ $food->food_name }}</a>
