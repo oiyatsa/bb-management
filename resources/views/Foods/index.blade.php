@@ -10,16 +10,20 @@
     <x-app-layout>
     <body>
         <h1 class="text-2xl mx-10 my-5">食品一覧</h1>
-        <form action="/foods" method="get">
-        <select name="categories[]" class="form-control" id="category" onchange="viewChange();">
-            <option value="">すべて</option>
-            <option value="冷蔵庫">冷蔵庫</option>
-            <option value="冷凍庫">冷凍庫</option>
-            <option value="野菜室">野菜室</option>
-            <option value="シンク下">シンク下</option>
-            <option value="その他">その他</option>
-   　　 </select>
-   　　 </form>
+      {{--  <form action="/foods" method="get">
+            @csrf
+            <div class="category_select">
+                <select name="storages" class="" id="" onchange="viewChange();">
+                    <option value="" id="btn-a">すべて</option>
+                    <option value="fridge" id="btn-a">冷蔵庫</option>
+                    <option value="freezer" id="btn-b">冷凍庫</option>
+                    <option value="vegi" id="btn-c">野菜室</option>
+                    <option value="sink" id="btn-d">シンク下</option>
+                    <option value="others" id="btn-e">その他</option>
+           　　 </select>
+   　　       </div>
+   　　       <button type ="submit" class="bg-stone-500 hover:bg-stone-600 text-white rounded py-1 px-5">絞り込み</button>
+   　　 </form>--}}
    　
        <!-- <a href="/foods/add" class="mb-5">食品登録</a> -->
         
@@ -34,7 +38,7 @@
          </div>
         </div> -->
         
-        <div class='categories1'>
+        <!--<div class='categories1'> -->
             {{--@foreach ($categories1 as $category1)
                    <div class='food'>
                       <div class='image mr-5'>画像</div>
@@ -50,15 +54,15 @@
                  @endforeach
             --}}
             
-        </div>
+        <!--</div> -->
         <div class="">
             <form>
                 @csrf
-                <div class="order_select">
-                    <input type="radio" name="sort" value="" id="btn01" class="checkbox">
+                <div class="order_seslect">
+                   <input type="radio" name="sort" value="" id="btn01" class="checkbox">
                         <label for="btn01" class="">
                             指定なし
-                        </label>
+                        </label> 
                     <input type="radio" name="sort" value="asc" id="btn02" class="checkbox">
                         <label for="btn02" class="">
                             賞味期限が近い順
@@ -68,6 +72,16 @@
                             賞味期限が遠い順
                         </label>
                 </div>
+                <div class="category_select">
+                <select name="storages" class="" id="" onchange="viewChange();">
+                    <option value="" id="btn-a">すべて</option>
+                    <option value= 1 id="btn-a">冷蔵庫</option>
+                    <option value= 2 id="btn-b">冷凍庫</option>
+                    <option value= 3 id="btn-c">野菜室</option>
+                    <option value= 4 id="btn-d">シンク下</option>
+                    <option value= 5 id="btn-e">その他</option>
+           　　 </select>
+   　　       </div>
                 <button type ="submit" class="bg-stone-500 hover:bg-stone-600 text-white rounded py-1 px-5">OK</button>
             </form>
         </div>

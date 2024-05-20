@@ -26,6 +26,7 @@ Route::get('/foods/{food}/edit', [FoodController::class, 'edit'])->name('edit');
 Route::put('/foods/{food}', [FoodController::class, 'update']);
 Route::delete('/foods/{food}', [FoodController::class,'delete']);
 
+Route::get('/search/{food_name}', [FoodController::class, 'search'])->name('search');
 
 
 Route::get('/dashboard', function () {

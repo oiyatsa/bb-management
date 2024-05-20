@@ -12,36 +12,70 @@ class FoodController extends Controller
 {
     public function index(Category $category, Food $food, Request $request)
     {
-       $sort = $request->sort;
-       if($sort==='asc'){
-           return view('Foods.index')->with([
+        $sort = $request->sort;
+        $storages = $request->storages;
+        //dd($storages);
+    //     if($storages==='fridge'){
+    //      $food = $food->where('categories', 1)->orderBy('expiration_date' , $sort)->get();
+    //  }elseif($storages==='freezer'){
+    //       $food = $food->where('categories', 2)->orderBy('expiration_date' , $sort)->get();
+    //   }elseif($storages==='vegi'){
+    //       $food = $food->where('categories', 3)->orderBy('expiration_date' , $sort)->get();
+    //   }elseif($storages==='sink'){
+    //      $food = $food->where('categories', 4)->orderBy('expiration_date' , $sort)->get();
+    //   }elseif($storages==='others'){
+    //      $food = $food->where('categories', 5)->orderBy('expiration_date' , $sort)->get();
+    //   }else{
+    //       $food = $food->orderBy('expiration_date' , $sort)->get();
+    //   }
+      
+      if($storages===null && $sort===null){
+         $food = $food->get();
+      }elseif($storages===null){
+          $food = $food->orderBy('expiration_date' , $sort)->get();
+      }elseif($sort===null){
+          $food = $food->where('category_id', $storages)->get();
+      }else{
+          $food = $food->where('category_id', $storages)->orderBy('expiration_date' , $sort)->get();
+      }
+      
+        return view('Foods.index')->with([
                'categories' => $category,
-               'foods' => $food->orderBy('expiration_date' , 'asc')->get(),
+               'foods' => $food
                ]);
-       }elseif($sort==='desc'){
-           return view('Foods.index')->with([
-               'categories' => $category,
-               'foods' => $food->orderBy('expiration_date' , 'desc')->get(),
-               ]);
-       }else{
-           return view('Foods.index')->with([
-               'categories' => $category,
-               'foods' => $food->get(),
-               ]);
-       }
+        
+        
        
-        $category1 = $food->where('category_id', 3)->get();
+       //if($sort==='asc'){
+          // return view('Foods.index')->with([
+    //           'categories' => $category,
+    //       /     'foods' => $food
+    //           ]);
+    //   }elseif($sort==='desc'){
+    //       return view('Foods.index')->with([
+    //           'categories' => $category,
+    //           'foods' => $food
+    //           ]);
+    //   }else{
+    //       return view('Foods.index')->with([
+    //           'categories' => $category,
+    //           'foods' => $food->get(),
+    //           ]);
+    //   }
+       
+     
+     
+       
+        //$category1 = $food->where('category_id', 3)->get();
        
        
        //カテゴリ（保管場所べつ）
-      //if(is_array($request->input('categories'))){
-
-   // $query->where(function($q) use($request){
-      //  foreach($request->input('categories') as $category){
-         //   $q->orWhere('category',$category);
-       //    }
-      //  });
-   // }
+       // if(is_array($request->input('storages'))){
+       //        $query->where(function($q) use($request){
+       // foreach($request->input('storages') as $storage){
+      //      $q->orWhere('storage',$storage);
+      // }
+      
     
     //残り日数カウント
    // $today = date("Y-m-d");
@@ -55,7 +89,7 @@ class FoodController extends Controller
         
     //}else if(strtotime($today) > strtotime($target_day)){
         
-      //  echo "期限切れ　日経過";
+      //  echo "期限切れ日経過";
         
     //}else{
       //  echo "あと.$remaining_period.日";
@@ -69,10 +103,9 @@ class FoodController extends Controller
             //'foods' => $food->orderBy('expiration_date', 'asc')->get(),
             //'categories1' => $category1
             //]);
-        
-        
-        
+    
     }
+    
     
     public function add(Category $category)
     {
@@ -100,7 +133,6 @@ class FoodController extends Controller
     public function edit(Food $food, Category $category)
     {
        
-        
         return view('Foods.edit')->with([
             'food' => $food,
             'categories' => $category->get()
@@ -129,7 +161,11 @@ class FoodController extends Controller
         return redirect('/foods');
     }
     
-    
+    public function search(Food $food_name)
+    {
+      
+      return redirect()->away('https://cookpad.com/search/{{$food_name}}');  
+    }
     
     
 }
