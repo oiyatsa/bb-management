@@ -20,9 +20,10 @@
             <option value="その他">その他</option>
    　　 </select>
    　　 </form>
-   　　 <input type ="radio">
-        <a href="/foods/add" class="mb-5">食品登録</a>
-        <div class="mb-5">
+   　
+       <!-- <a href="/foods/add" class="mb-5">食品登録</a> -->
+        
+            
         <!--<div class="select_category">
             <input type="radio" name="category" id="all" value="すべて"><label for="all">すべて</label>
             <input type="radio" name="category" id="fridge" value="冷蔵庫"><label for="fridge">冷蔵庫</label>
@@ -32,63 +33,83 @@
             <input type="radio" name="category" id="others" value="others"><label for="others">その他</label>
          </div>
         </div> -->
+        
         <div class='categories1'>
-             @foreach ($categories1 as $category1)
-               <div class='food'>
-                  <div class='image mr-5'>画像</div>
-                    <h2 class='food_name text-lg mr-5'>
-                        <a href="/foods/{{ $category1->id }}/edit">{{ $category1->food_name }}</a>
-                    </h2>
-                    <h3 class='remaining_period mr-5'>残り～日</h3><!--賞味期限と今日の日にちから期限切れまで残り何日か表示 -->
-                    <h4 class='expiration_date mr-5'>{{$category1->expiration_date}}</h4>
-                    <h5 class='remaining_amount mr-5'>{{$category1->remaining_amount}}</h5>
-                    <h6 class='storage mr-5'>{{$category1->category->category_name}}</h6>
-                    <h7 class='note mr-5'>{{$category1->note}}</h7>
-              </div>
-             @endforeach
-                
+            {{--@foreach ($categories1 as $category1)
+                   <div class='food'>
+                      <div class='image mr-5'>画像</div>
+                        <h2 class='food_name text-lg mr-5'>
+                            <a href="/foods/{{ $category1->id }}/edit">{{ $category1->food_name }}</a>
+                        </h2>
+                        <h3 class='remaining_period mr-5'>残り～日</h3><!--賞味期限と今日の日にちから期限切れまで残り何日か表示 -->
+                        <h4 class='expiration_date mr-5'>{{$category1->expiration_date}}</h4>
+                        <h5 class='remaining_amount mr-5'>{{$category1->remaining_amount}}</h5>
+                        <h6 class='storage mr-5'>{{$category1->category->category_name}}</h6>
+                        <h7 class='note mr-5'>{{$category1->note}}</h7>
+                  </div>
+                 @endforeach
+            --}}
             
+        </div>
+        <div class="">
+            <form>
+                @csrf
+                <div class="order_select">
+                    <input type="radio" name="sort" value="" id="btn01" class="checkbox">
+                        <label for="btn01" class="">
+                            指定なし
+                        </label>
+                    <input type="radio" name="sort" value="asc" id="btn02" class="checkbox">
+                        <label for="btn02" class="">
+                            賞味期限が近い順
+                        </label>
+                    <input type="radio" name="sort" value="desc" id="btn03" class="checkbox">
+                        <label for="btn03" class="">
+                            賞味期限が遠い順
+                        </label>
+                </div>
+                <button type ="submit" class="bg-stone-500 hover:bg-stone-600 text-white rounded py-1 px-5">OK</button>
+            </form>
         </div>
         
         <div class='foods'>
-          <table border="1" class="w-full border">
+          <table  class="border-collapse border border-slate-400 w-full">
              <thead>
                <tr>
-                  <th></th>
-                  <th>食品名</th>
-                  <th>残り日数</th>
-                  <th>賞味期限</th>
-                  <th>残りの量</th>
-                  <th>保管場所</th>
-                  <th>メモ</th>
-                  <th></th>
+                  <th class="border border-slate-300"></th>
+                  <th class="border border-slate-300">食品名</th>
+                  <th class="border border-slate-300">残り日数</th>
+                  <th class="border border-slate-300">賞味期限</th>
+                  <th class="border border-slate-300">残りの量</th>
+                  <th class="border border-slate-300">保管場所</th>
+                  <th class="border border-slate-300">メモ</th>
+                  <th class="border border-slate-300"></th>
                </tr> 
              </thead>
              <tbody>
              @foreach ($foods as $food)
               <tr>
                <div class='food'>
-                <div class="divide-y divide-gray-400">
-                    <td><img class="h-auto size-32 " src="{{ $food->image }}" alt="画像が読み込めません。"/></td>
-                    <td>
-                        <h2 class='food_name text-lg hover:text-blue-500'>
+                <div class="">
+                    <td class="border-b border-slate-300"><img class="h-auto size-28 " src="{{ $food->image }}" alt="画像が読み込めません。"/></td>
+                    <td class="border-b border-slate-300">
+                        <h2 class='food_name text-lg hover:text-neutral-500'>
                         <a href="/foods/{{ $food->id }}/edit">{{ $food->food_name }}</a>
                         </h2>
                     </td>
-                    <td><h3 class='remaining_period'>残り～日</h3><!--賞味期限と今日の日にちから期限切れまで残り何日か表示 --></td>
-                    <td><h4 class='expiration_date'>{{$food->expiration_date}}</h4></td>
-                    <td><h5 class='remaining_amount'>{{$food->remaining_amount}}</h5></td>
-                    <td><h6 class='storage'>{{$food->category->category_name}}</h6></td>
-                    <td><h7 class='note'>{{$food->note}}</h7></td>
-                    <td>
+                    <td class='remaining_period border-b border-slate-300'>残り～日<!--賞味期限と今日の日にちから期限切れまで残り何日か表示 --></td>
+                    <td class='expiration_date border-b border-slate-300'>{{$food->expiration_date}}</td>
+                    <td class='remaining_amount border-b border-slate-300'>{{$food->remaining_amount}}</td>
+                    <td class='storage border-b border-slate-300'>{{$food->category->category_name}}</td>
+                    <td class='note border-b border-slate-300'>{{$food->note}}</td>
+                    <td class='border-b border-slate-300'>
                     <form action="/foods/{{ $food->id }}" id="form_{{ $food->id }}" method="post">
                         @csrf
                         @method('DELETE')
-                        <button type="button" onclick="deleteFood({{ $food->id }})" class="border px-3 py-1">削除</button>
+                        <button type="button" onclick="deleteFood({{ $food->id }})" class="bg-stone-500 hover:bg-stone-600 text-white rounded px-3 py-1">削除</button>
                     </form>
                     </td>
                 </div>
-              </div>
               </tr>
              @endforeach
              </tbody>
