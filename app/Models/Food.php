@@ -22,6 +22,7 @@ class Food extends Model
     'category_id',
     'note',
     'image',
+    'user_id'
     ];
     
     //public $sortable = ['created_at', 'expiration_date'];
@@ -31,4 +32,13 @@ class Food extends Model
         return $this->belongsTo(Category::class);
     }
     
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+    
+    // function getPaginateByLimit(int $limit_count = 20)
+    // {
+    //     return $this::with('user')->paginate($limit_count);
+    // }
 }
