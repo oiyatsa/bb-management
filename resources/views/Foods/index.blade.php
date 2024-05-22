@@ -55,10 +55,10 @@
             --}}
             
         <!--</div> -->
-        <div class="">
+        <div class="sort">
             <form>
                 @csrf
-                <div class="order_seslect">
+                <div class="order_seslect ml-4">
                    <input type="radio" name="sort" value="" id="btn01" class="checkbox">
                         <label for="btn01" class="">
                             指定なし
@@ -72,16 +72,17 @@
                             賞味期限が遠い順
                         </label>
                 </div>
-                <div class="category_select">
-                <select name="storages" class="" id="" onchange="viewChange();">
-                    <option value="" id="btn-a">すべて</option>
-                    <option value= 1 id="btn-a">冷蔵庫</option>
-                    <option value= 2 id="btn-b">冷凍庫</option>
-                    <option value= 3 id="btn-c">野菜室</option>
-                    <option value= 4 id="btn-d">シンク下</option>
-                    <option value= 5 id="btn-e">その他</option>
-           　　 </select>
-   　　       </div>
+                <h3 class="ml-3">保管場所</h3>
+                <div class="category_select ml-">
+                     <select name="storages" class="" id="" onchange="viewChange();">
+                        <option value="" id="btn-a">すべて</option>
+                        <option value= 1 id="btn-a">冷蔵庫</option>
+                        <option value= 2 id="btn-b">冷凍庫</option>
+                        <option value= 3 id="btn-c">野菜室</option>
+                        <option value= 4 id="btn-d">シンク下</option>
+                        <option value= 5 id="btn-e">その他</option>
+               　　   </select>
+   　　           </div>
                 <button type ="submit" class="bg-stone-500 hover:bg-stone-600 text-white rounded py-1 px-5">OK</button>
             </form>
         </div>
@@ -123,8 +124,10 @@
                     <form action="/foods/{{ $food->id }}" id="form_{{ $food->id }}" method="post">
                         @csrf
                         @method('DELETE')
-                        <button type="button" onclick="deleteFood({{ $food->id }})" class="bg-stone-500 hover:bg-stone-600 text-white rounded px-3 py-1">削除</button>
+                        <button type="button" onclick="deleteFood({{ $food->id }})" class="bg-stone-500 hover:bg-stone-600 text-white rounded px-3 py-1 mb-1">削除</button>
                     </form>
+                    <a href="/search/{{ $food->search_recipie_name }}" class="bg-stone-500 hover:bg-stone-600 text-white rounded px-3 py-1">レシピ検索</a>
+                        
                     </td>
                 </div>
               </tr>

@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Food;
 use App\Http\Requests\FoodRequest;
 use Cloudinary;
+use Illuminate\Support\Facades\Auth;
 
 class FoodController extends Controller
 {
@@ -28,15 +29,17 @@ class FoodController extends Controller
     //   }else{
     //       $food = $food->orderBy('expiration_date' , $sort)->get();
     //   }
+    
+    
       
       if($storages===null && $sort===null){
-         $food = $food->get();
+         $food = $food->where('user_id',Auth::id())->get();
       }elseif($storages===null){
-          $food = $food->orderBy('expiration_date' , $sort)->get();
+          $food = $food->where('user_id',Auth::id())->orderBy('expiration_date' , $sort)->get();
       }elseif($sort===null){
-          $food = $food->where('category_id', $storages)->get();
+          $food = $food->where('user_id',Auth::id())->where('category_id', $storages)->get();
       }else{
-          $food = $food->where('category_id', $storages)->orderBy('expiration_date' , $sort)->get();
+          $food = $food->where('user_id',Auth::id())->where('category_id', $storages)->orderBy('expiration_date' , $sort)->get();
       }
       
         return view('Foods.index')->with([
@@ -118,6 +121,7 @@ class FoodController extends Controller
         //dd($image_url);
         
         $input = $request['food'];
+        $input += ['user_id' => $request->user()->id]; //補足09-3、追加
         if($request->file('image')){
             $image = Cloudinary::upload($request->file('image')->getRealPath())->getSecurePath();
             $input += ['image' => $image];
@@ -146,6 +150,7 @@ class FoodController extends Controller
          //dd($request->file('image'));
          
         $input = $request['food'];
+        $input += ['user_id' => $request->user()->id]; //補足09-3、追加
         if($request->file('image')){
             $image = Cloudinary::upload($request->file('image')->getRealPath())->getSecurePath();
         $input += ['image' => $image];
@@ -161,11 +166,20 @@ class FoodController extends Controller
         return redirect('/foods');
     }
     
-    public function search(Food $food_name)
+    public function search($food_name)
     {
-      
-      return redirect()->away('https://cookpad.com/search/{{$food_name}}');  
+      //dd($food_name); 
+      //return redirect()->away('https://kurashiru.com/search?query=/'.$food_name);
+      return redirect()->away('https://cookpad.com/search/'.$food_name);
     }
+    
+    //public function search()
+    //{
+
+    //   return redirect()->away('https://cookpad.com/');  
+    // }
+    
+    
     
     
 }
