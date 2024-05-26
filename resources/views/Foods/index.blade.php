@@ -58,32 +58,37 @@
         <div class="sort">
             <form>
                 @csrf
-                <div class="order_seslect ml-4">
-                   <input type="radio" name="sort" value="" id="btn01" class="checkbox">
-                        <label for="btn01" class="">
-                            指定なし
-                        </label> 
-                    <input type="radio" name="sort" value="asc" id="btn02" class="checkbox">
-                        <label for="btn02" class="">
-                            賞味期限が近い順
-                        </label>
-                    <input type="radio" name="sort" value="desc" id="btn03" class="checkbox">
-                        <label for="btn03" class="">
-                            賞味期限が遠い順
-                        </label>
-                </div>
-                <h3 class="ml-3">保管場所</h3>
-                <div class="category_select ml-">
-                     <select name="storages" class="" id="" onchange="viewChange();">
-                        <option value="" id="btn-a">すべて</option>
-                        <option value= 1 id="btn-a">冷蔵庫</option>
-                        <option value= 2 id="btn-b">冷凍庫</option>
-                        <option value= 3 id="btn-c">野菜室</option>
-                        <option value= 4 id="btn-d">シンク下</option>
-                        <option value= 5 id="btn-e">その他</option>
-               　　   </select>
+                <div class="flex justify-start">
+                    <div class="order_select mx-4">
+                        <p class=""></p>
+                       <input type="radio" name="sort" value="" id="btn01" class="checkbox">
+                            <label for="btn01" class="">
+                                指定なし
+                            </label>
+                            <br>
+                        <input type="radio" name="sort" value="asc" id="btn02" class="checkbox">
+                            <label for="btn02" class="">
+                                賞味期限が近い順
+                            </label>
+                            <br>
+                        <input type="radio" name="sort" value="desc" id="btn03" class="checkbox">
+                            <label for="btn03" class="">
+                                賞味期限が遠い順
+                            </label>
+                    </div>
+                    <div class="category_select ml-4">
+                        <h3 class="ml-3"></h3>
+                         <select name="storages" class="" id="" onchange="viewChange();">
+                            <option value="" id="btn-a">すべて</option>
+                            <option value= 1 id="btn-a">冷蔵庫</option>
+                            <option value= 2 id="btn-b">冷凍庫</option>
+                            <option value= 3 id="btn-c">野菜室</option>
+                            <option value= 4 id="btn-d">シンク下</option>
+                            <option value= 5 id="btn-e">その他</option>
+                   　　   </select>
+       　　           </div>
    　　           </div>
-                <button type ="submit" class="bg-stone-500 hover:bg-stone-600 text-white rounded py-1 px-5">OK</button>
+                <button type ="submit" class="bg-stone-500 hover:bg-stone-600 text-white rounded w-40 py-1 mx-5 my-5">OK</button>
             </form>
         </div>
         
@@ -103,19 +108,23 @@
              </thead>
              <tbody>
              @foreach ($foods as $food)
+
               <tr>
                <div class='food'>
                 <div class="">
                     
                     
-                        <td class="border-b border-slate-300"><img class="h-auto size-28 " src="{{ $food->image }}" alt="画像が読み込めません。"/></td>
+                       <td class="border-b border-slate-300"><img class="h-auto size-28 " src="{{ $food->image }}" alt="画像が読み込めません。"/></td>
+                    
                     
                     <td class="border-b border-slate-300">
                         <h2 class='food_name text-lg hover:text-neutral-500'>
                         <a href="/foods/{{ $food->id }}/edit">{{ $food->food_name }}</a>
                         </h2>
                     </td>
-                    <td class='remaining_period border-b border-slate-300'>残り～日<!--賞味期限と今日の日にちから期限切れまで残り何日か表示 --></td>
+                    
+                    <td class='remaining_period border-b border-slate-300'>残り{{$food->left}}<!--賞味期限と今日の日にちから期限切れまで残り何日か表示 --></td>
+                     
                     <td class='expiration_date border-b border-slate-300'>{{$food->expiration_date}}</td>
                     <td class='remaining_amount border-b border-slate-300'>{{$food->remaining_amount}}</td>
                     <td class='storage border-b border-slate-300'>{{$food->category->category_name}}</td>

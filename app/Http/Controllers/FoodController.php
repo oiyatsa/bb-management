@@ -8,30 +8,28 @@ use App\Models\Food;
 use App\Http\Requests\FoodRequest;
 use Cloudinary;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class FoodController extends Controller
 {
     public function index(Category $category, Food $food, Request $request)
     {
+    //     $foods = $food->get();
+    //  $lefts=[];
+    //  foreach($foods as $food){
+    //     $expiration_date = $food->expiration_date;
+    //     $expirations_date=(string)$expiration_date;
+    //     $today = new Carbon('today');
+    //   $limit = new Carbon($expirations_date);
+    //   $left = $limit->diffInDays($today);
+    //     $lefts[]=$left;
+    //     $leftDay = $lefts[]->sort()
+    //  }
+        //dd($lefts);
+        
         $sort = $request->sort;
         $storages = $request->storages;
-        //dd($storages);
-    //     if($storages==='fridge'){
-    //      $food = $food->where('categories', 1)->orderBy('expiration_date' , $sort)->get();
-    //  }elseif($storages==='freezer'){
-    //       $food = $food->where('categories', 2)->orderBy('expiration_date' , $sort)->get();
-    //   }elseif($storages==='vegi'){
-    //       $food = $food->where('categories', 3)->orderBy('expiration_date' , $sort)->get();
-    //   }elseif($storages==='sink'){
-    //      $food = $food->where('categories', 4)->orderBy('expiration_date' , $sort)->get();
-    //   }elseif($storages==='others'){
-    //      $food = $food->where('categories', 5)->orderBy('expiration_date' , $sort)->get();
-    //   }else{
-    //       $food = $food->orderBy('expiration_date' , $sort)->get();
-    //   }
     
-    
-      
       if($storages===null && $sort===null){
          $food = $food->where('user_id',Auth::id())->get();
       }elseif($storages===null){
@@ -40,11 +38,24 @@ class FoodController extends Controller
           $food = $food->where('user_id',Auth::id())->where('category_id', $storages)->get();
       }else{
           $food = $food->where('user_id',Auth::id())->where('category_id', $storages)->orderBy('expiration_date' , $sort)->get();
+       
       }
+      
+       $foods = $food;
+       foreach($foods as $food){
+          $expiration_date = $food->expiration_date;
+          $expirations_date=(string)$expiration_date;
+          $today = new Carbon('today');
+         $limit = new Carbon($expirations_date);
+         $left = $limit->diffInDays($today);
+        
+          $food["left"] = $left;
+       }
+       //dd($foods);
       
         return view('Foods.index')->with([
                'categories' => $category,
-               'foods' => $food
+               'foods' => $foods,
                ]);
         
         
@@ -66,7 +77,20 @@ class FoodController extends Controller
     //           ]);
     //   }
        
-     
+          //dd($storages);
+    //     if($storages==='fridge'){
+    //      $food = $food->where('categories', 1)->orderBy('expiration_date' , $sort)->get();
+    //  }elseif($storages==='freezer'){
+    //       $food = $food->where('categories', 2)->orderBy('expiration_date' , $sort)->get();
+    //   }elseif($storages==='vegi'){
+    //       $food = $food->where('categories', 3)->orderBy('expiration_date' , $sort)->get();
+    //   }elseif($storages==='sink'){
+    //      $food = $food->where('categories', 4)->orderBy('expiration_date' , $sort)->get();
+    //   }elseif($storages==='others'){
+    //      $food = $food->where('categories', 5)->orderBy('expiration_date' , $sort)->get();
+    //   }else{
+    //       $food = $food->orderBy('expiration_date' , $sort)->get();
+    //   }
      
        
         //$category1 = $food->where('category_id', 3)->get();
@@ -81,9 +105,15 @@ class FoodController extends Controller
       
     
     //残り日数カウント
-   // $today = date("Y-m-d");
-    //$target_day = 'foods' -> $expiration_date;
+    $today = new DateTime();
+    $target_day = $food['expiration_date'];
     
+    
+    $diff = $today->diff($target_day);
+    $diff->d;
+    
+    
+    //$target_day = 'foods' -> $expiration_date;
     //$remaining_period = $today->diff($target_day);
     
     //if(strtotime($today) === strtotime($target_day)){
