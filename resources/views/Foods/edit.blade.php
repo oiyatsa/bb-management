@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Posts</title>
+        <title>食品詳細</title>
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     </head>
@@ -54,7 +54,7 @@
                        <textarea name='food[note]'  placeholder="メモ">{{ $food->note }}</textarea>
                        <p class='note_error' style="color:red">{{ $errors->first('food.note') }}</p>
                  </div>
-                 <input type="submit" class="bg-stone-500 hover:bg-stone-600 text-white rounded px-10 py-2" value="登録内容を変更して保存">
+                 <input type="submit" class="bg-stone-500 hover:bg-stone-600 text-white rounded px-10 py-2 my-4" value="登録内容を変更して保存">
             </form>
              <div class='footer'>
                  <a href="/foods" class="hover:text-neutral-500">一覧へ戻る</a>

@@ -182,11 +182,11 @@ return [
     */
 
     'attributes' => [
-        'food[food_name]' => '食品（商品）名',
-        'food[search_recipie_name]' => 'レシピ検索用の名前',
-        'food[expiration_date]' => '賞味（消費）期限',
-        'food[remaining_amount]' => '残りの量',
-        'food[note]' => 'メモ欄',
+        'food.food_name' => '食品（商品）名',
+        'food.search_recipie_name' => 'レシピ検索用の名前',
+        'food.expiration_date' => '賞味（消費）期限',
+        'food.remaining_amount' => '残りの量',
+        'food.note' => 'メモ欄',
         ],
 
 ];

@@ -12,6 +12,7 @@
         "kyslik/column-sortable": "^6.6",
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^3.0",
+        "laravel/socialite": "^5.14",
         "laravel/tinker": "^2.7"
     },
     "require-dev": {

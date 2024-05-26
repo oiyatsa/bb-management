@@ -20,13 +20,13 @@
                    <!-- <input type='image'>-->
                 <div class='food_name'>
                     <h3 class="text-lg">食品名（商品名）</h3>
-                    <input type='text' name='food[food_name]'  placeholder="食品名や商品名" value={{old('food.food_name')}} >
+                    <input type='text' name='food[food_name]' size=30  placeholder="食品名や商品名" value={{old('food.food_name')}} >
                     <p class='food_name_error' style="color:red">{{ $errors->first('food.food_name') }}</p>
                     <div class="mb-4"></div>
                 </div>
                 <div class='search_recipie_name'>
                     <h4 class="text-lg">レシピ検索用の名前</h4>
-                    <input type='text' name='food[search_recipie_name]' placeholder="レシピ検索用の名前" value={{old('food.search_recipie_name')}} >
+                    <input type='text' name='food[search_recipie_name]' size=30 placeholder="レシピ検索用の名前" value={{old('food.search_recipie_name')}} >
                     <p class='search_recipie_name_error' style="color:red">{{ $errors->first('food.search_recipie_name') }}</p>
                     <div class="mb-4"></div>
                 </div>
@@ -39,7 +39,7 @@
                 </div>
                 <div class='remaining_amount'>
                     <h6 class="text-lg">残りの量</h6>
-                    <input type='text' name='food[remaining_amount]' placeholder="～ml、～個など" value={{old('food.remaining_amount')}}>
+                    <input type='text' name='food[remaining_amount]' size=15 placeholder="～ml、～個など" value={{old('food.remaining_amount')}}>
                     <p class='remaining_amount_error' style="color:red">{{ $errors->first('food.remaining_amount') }}</p>
                     <div class="mb-4"></div>
                 </div>
@@ -59,7 +59,7 @@
                     <textarea name='food[note]' placeholder="メモ" class="mb-4">{{old('food.note')}}</textarea>
                     <p class='note_error' style="color:red">{{ $errors->first('food.note') }}</p>
                 </div>
-                <button type="submit" class="bg-stone-500 hover:bg-stone-600 text-white rounded px-20 py-2" class="mb-4">登録</button>
+                <button type="submit" class="bg-stone-500 hover:bg-stone-600 text-white rounded px-20 py-2 my-4">登録</button>
              </form>
              <div class='footer'>
                  <a href="/foods" class="hover:text-neutral-500">一覧へ戻る</a>

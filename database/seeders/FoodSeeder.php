@@ -51,7 +51,7 @@ class FoodSeeder extends Seeder
                 'search_recipie_name'=>'レシピ検索用',
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(),
-                'user_id' => 2
+                'user_id' => 1
                 
         ]);     
         
@@ -64,7 +64,7 @@ class FoodSeeder extends Seeder
                 'search_recipie_name'=>'レシピ検索用',
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(),
-                'user_id' => 2
+                'user_id' => 1
         ]);     
         
         DB::table('foods')->insert([
@@ -76,7 +76,7 @@ class FoodSeeder extends Seeder
                 'search_recipie_name'=>'レシピ検索用',
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(),
-                'user_id' => 2
+                'user_id' => 1
                 
         ]);     
         
@@ -89,7 +89,7 @@ class FoodSeeder extends Seeder
                 'search_recipie_name'=>'レシピ検索用',
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(),
-                'user_id' => 2
+                'user_id' => 1
                 
         ]);     
         
@@ -102,7 +102,7 @@ class FoodSeeder extends Seeder
                 'search_recipie_name'=>'レシピ検索用',
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(),
-                'user_id' => 2
+                'user_id' => 1
         ]);     
     }
 }
