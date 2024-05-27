@@ -48,9 +48,14 @@ class FoodController extends Controller
           $today = new Carbon('today');
          $limit = new Carbon($expirations_date);
          $left = $limit->diffInDays($today);
-        
-          $food["left"] = $left;
+         
+        // if ($today->lessThan($limit)) {
+        //     $left = $limit->diffInDays($today);;
+        // }else{
+        //     
+        //   $food["left"] = $left;
        }
+        
        //dd($foods);
       
         return view('Foods.index')->with([
@@ -92,43 +97,7 @@ class FoodController extends Controller
     //       $food = $food->orderBy('expiration_date' , $sort)->get();
     //   }
      
-       
-        //$category1 = $food->where('category_id', 3)->get();
-       
-       
-       //カテゴリ（保管場所べつ）
-       // if(is_array($request->input('storages'))){
-       //        $query->where(function($q) use($request){
-       // foreach($request->input('storages') as $storage){
-      //      $q->orWhere('storage',$storage);
-      // }
-      
     
-    //残り日数カウント
-    $today = new DateTime();
-    $target_day = $food['expiration_date'];
-    
-    
-    $diff = $today->diff($target_day);
-    $diff->d;
-    
-    
-    //$target_day = 'foods' -> $expiration_date;
-    //$remaining_period = $today->diff($target_day);
-    
-    //if(strtotime($today) === strtotime($target_day)){
-        
-      //  echo "本日賞味期限です";
-        
-    //}else if(strtotime($today) > strtotime($target_day)){
-        
-      //  echo "期限切れ日経過";
-        
-    //}else{
-      //  echo "あと.$remaining_period.日";
-        
-    //}
-   
     
         //一覧表示
         //return view('Foods.index')->with([
@@ -163,7 +132,6 @@ class FoodController extends Controller
         return redirect('/foods');
     }
     
-    //function edit追加
     public function edit(Food $food, Category $category)
     {
        
