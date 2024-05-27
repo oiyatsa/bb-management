@@ -10,51 +10,7 @@
     <x-app-layout>
     <body>
         <h1 class="text-2xl mx-10 my-5">食品一覧</h1>
-      {{--  <form action="/foods" method="get">
-            @csrf
-            <div class="category_select">
-                <select name="storages" class="" id="" onchange="viewChange();">
-                    <option value="" id="btn-a">すべて</option>
-                    <option value="fridge" id="btn-a">冷蔵庫</option>
-                    <option value="freezer" id="btn-b">冷凍庫</option>
-                    <option value="vegi" id="btn-c">野菜室</option>
-                    <option value="sink" id="btn-d">シンク下</option>
-                    <option value="others" id="btn-e">その他</option>
-           　　 </select>
-   　　       </div>
-   　　       <button type ="submit" class="bg-stone-500 hover:bg-stone-600 text-white rounded py-1 px-5">絞り込み</button>
-   　　 </form>--}}
-   　
-       <!-- <a href="/foods/add" class="mb-5">食品登録</a> -->
-        
-            
-        <!--<div class="select_category">
-            <input type="radio" name="category" id="all" value="すべて"><label for="all">すべて</label>
-            <input type="radio" name="category" id="fridge" value="冷蔵庫"><label for="fridge">冷蔵庫</label>
-            <input type="radio" name="category" id="freezer" value="freezer"><label for="freezer">冷凍庫</label>
-            <input type="radio" name="category" id="vegetables" value="vegetables"><label for="vegetables">野菜室</label>
-            <input type="radio" name="category" id="sink" value="sink"><label for="sink">シンク下</label>
-            <input type="radio" name="category" id="others" value="others"><label for="others">その他</label>
-         </div>
-        </div> -->
-        
-        <!--<div class='categories1'> -->
-            {{--@foreach ($categories1 as $category1)
-                   <div class='food'>
-                      <div class='image mr-5'>画像</div>
-                        <h2 class='food_name text-lg mr-5'>
-                            <a href="/foods/{{ $category1->id }}/edit">{{ $category1->food_name }}</a>
-                        </h2>
-                        <h3 class='remaining_period mr-5'>残り～日</h3><!--賞味期限と今日の日にちから期限切れまで残り何日か表示 -->
-                        <h4 class='expiration_date mr-5'>{{$category1->expiration_date}}</h4>
-                        <h5 class='remaining_amount mr-5'>{{$category1->remaining_amount}}</h5>
-                        <h6 class='storage mr-5'>{{$category1->category->category_name}}</h6>
-                        <h7 class='note mr-5'>{{$category1->note}}</h7>
-                  </div>
-                 @endforeach
-            --}}
-            
-        <!--</div> -->
+    
         <div class="sort">
             <form>
                 @csrf
@@ -123,7 +79,7 @@
                         </h2>
                     </td>
                     
-                    <td class='remaining_period border-b border-slate-300'>残り{{$food->left}}<!--賞味期限と今日の日にちから期限切れまで残り何日か表示 --></td>
+                    <td class='remaining_period border-b border-slate-300'>残り{{$food->left}}日</td>
                      
                     <td class='expiration_date border-b border-slate-300'>{{$food->expiration_date}}</td>
                     <td class='remaining_amount border-b border-slate-300'>{{$food->remaining_amount}}</td>
@@ -156,7 +112,6 @@
             }
         
         </script>
-       <!-- <script src="./Foods/Foods.js" defer></script> -->
     </body>
     </x-app-layout>
 </html>
