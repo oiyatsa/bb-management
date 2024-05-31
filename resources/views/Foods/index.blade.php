@@ -10,7 +10,6 @@
     <x-app-layout>
     <body>
         <h1 class="text-2xl mx-10 my-5">食品一覧</h1>
-    
         <div class="sort">
             <form>
                 @csrf
