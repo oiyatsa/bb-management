@@ -53,7 +53,7 @@ class FoodController extends Controller
         //     $left = $limit->diffInDays($today);;
         // }else{
         //     
-        //   $food["left"] = $left;
+          $food["left"] = $left;
        }
         
        //dd($foods);
@@ -167,8 +167,8 @@ class FoodController extends Controller
     public function search($food_name)
     {
       //dd($food_name); 
-      //return redirect()->away('https://kurashiru.com/search?query=/'.$food_name);
-      return redirect()->away('https://cookpad.com/search/'.$food_name);
+      return redirect()->away('https://kurashiru.com/search?query=/'.$food_name);
+      //return redirect()->away('https://cookpad.com/search/'.$food_name);
     }
     
     //public function search()
